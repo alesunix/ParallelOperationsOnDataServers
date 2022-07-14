@@ -31,19 +31,19 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnTestCon = new System.Windows.Forms.Button();
             this.labelnumeric = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownS = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownM = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownH = new System.Windows.Forms.NumericUpDown();
             this.btnStart = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelConsole = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxFilter = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownH)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -53,9 +53,9 @@
             // 
             this.panel1.Controls.Add(this.btnTestCon);
             this.panel1.Controls.Add(this.labelnumeric);
-            this.panel1.Controls.Add(this.numericUpDown3);
-            this.panel1.Controls.Add(this.numericUpDown2);
-            this.panel1.Controls.Add(this.numericUpDown1);
+            this.panel1.Controls.Add(this.numericUpDownS);
+            this.panel1.Controls.Add(this.numericUpDownM);
+            this.panel1.Controls.Add(this.numericUpDownH);
             this.panel1.Controls.Add(this.btnStart);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -83,26 +83,26 @@
             this.labelnumeric.TabIndex = 4;
             this.labelnumeric.Text = "Час       Мин        Сек";
             // 
-            // numericUpDown3
+            // numericUpDownS
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(122, 57);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(37, 23);
-            this.numericUpDown3.TabIndex = 3;
+            this.numericUpDownS.Location = new System.Drawing.Point(122, 57);
+            this.numericUpDownS.Name = "numericUpDownS";
+            this.numericUpDownS.Size = new System.Drawing.Size(37, 23);
+            this.numericUpDownS.TabIndex = 3;
             // 
-            // numericUpDown2
+            // numericUpDownM
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(79, 57);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(37, 23);
-            this.numericUpDown2.TabIndex = 2;
+            this.numericUpDownM.Location = new System.Drawing.Point(79, 57);
+            this.numericUpDownM.Name = "numericUpDownM";
+            this.numericUpDownM.Size = new System.Drawing.Size(37, 23);
+            this.numericUpDownM.TabIndex = 2;
             // 
-            // numericUpDown1
+            // numericUpDownH
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(36, 57);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(37, 23);
-            this.numericUpDown1.TabIndex = 1;
+            this.numericUpDownH.Location = new System.Drawing.Point(36, 57);
+            this.numericUpDownH.Name = "numericUpDownH";
+            this.numericUpDownH.Size = new System.Drawing.Size(37, 23);
+            this.numericUpDownH.TabIndex = 1;
             // 
             // btnStart
             // 
@@ -153,19 +153,19 @@
             this.labelConsole.TabIndex = 5;
             this.labelConsole.Text = "labelConsole";
             // 
-            // textBox1
+            // textBoxFilter
             // 
-            this.textBox1.Location = new System.Drawing.Point(203, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(164, 23);
-            this.textBox1.TabIndex = 3;
+            this.textBoxFilter.Location = new System.Drawing.Point(203, 3);
+            this.textBoxFilter.Name = "textBoxFilter";
+            this.textBoxFilter.Size = new System.Drawing.Size(164, 23);
+            this.textBoxFilter.TabIndex = 3;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxFilter);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -173,9 +173,9 @@
             this.Text = "Параллельные операции на серверах с данными";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownH)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel3.ResumeLayout(false);
@@ -192,12 +192,12 @@
         private Panel panel2;
         private Panel panel3;
         private Label labelnumeric;
-        private NumericUpDown numericUpDown3;
-        private NumericUpDown numericUpDown2;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown numericUpDownS;
+        private NumericUpDown numericUpDownM;
+        private NumericUpDown numericUpDownH;
         private Label labelConsole;
         private Button btnTestCon;
         private DataGridView dataGridView1;
-        private TextBox textBox1;
+        private TextBox textBoxFilter;
     }
 }
