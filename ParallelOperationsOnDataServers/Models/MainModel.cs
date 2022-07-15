@@ -132,7 +132,7 @@ namespace ParallelOperationsOnDataServers.Models
                 try
                 {
                     con.Open();
-                    var cmd = new OracleCommand("SELECT data, id FROM dataServer", con);
+                    var cmd = new OracleCommand("SELECT sysdate date, id FROM sys_config WHERE param = 'logsat'", con);
                     cmd.ExecuteNonQuery();
                     DataTable dt = new DataTable();
                     var da = new OracleDataAdapter(cmd);
