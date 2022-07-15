@@ -138,7 +138,7 @@ namespace ParallelOperationsOnDataServers.Models
                     var da = new OracleDataAdapter(cmd);
                     da.Fill(dt);
                     con.Close();
-                    sysDate = dt.Rows[0]["data"].ToString();
+                    sysDate = dt.Rows[0]["date"].ToString();
                     id = dt.Rows[0]["id"].ToString();
                     difference = DifferenceDate(sysDate);/// Разница во времени
                 }
