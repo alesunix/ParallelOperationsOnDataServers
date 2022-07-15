@@ -160,6 +160,7 @@ namespace ParallelOperationsOnDataServers.Models
         {
             lock (locker)/// Блокирует эту чать кода для синхронного чтения
             {
+                /// Ставлю метку "Waiting" - начато выполнение, а после получения значения заполняю итоговую таблицу
                 dtTable.Rows[count]["SysDate"] = sysDate == String.Empty ? "Waiting" : sysDate;
                 dtTable.Rows[count]["Difference"] = difference == String.Empty ? "Waiting" : difference;
                 dtTable.Rows[count]["Id"] = id == String.Empty ? "Waiting" : id;
