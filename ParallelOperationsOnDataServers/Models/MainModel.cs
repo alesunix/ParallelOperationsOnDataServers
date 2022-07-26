@@ -111,6 +111,7 @@ namespace ParallelOperationsOnDataServers.Models
                 connString.DataSource = $"Строка подключения";
                 connStringList.Add(count, connString.ToString());/// Собрать все подключения
             }
+            token = tokenSource.Token;
             await Task.Run(() => ParallelStreams(connStringList), token);/// Параллельный запуск подключений к серверам + token отмены
             dtTable.DefaultView.Sort = "[Difference] DESC";/// Отсортировать
             ConsoleLog();
