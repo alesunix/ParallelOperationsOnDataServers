@@ -22,6 +22,8 @@ namespace ParallelOperationsOnDataServers.Models
         public bool Work { get; set; }
         object locker = new object();
         public DataTable dtTable = new DataTable();
+        public static CancellationTokenSource tokenSource = new CancellationTokenSource();
+        public static CancellationToken token = tokenSource.Token;
         OracleConnection con = Connect.connect;
         public MainModel()
         {
@@ -109,7 +111,7 @@ namespace ParallelOperationsOnDataServers.Models
                 connString.DataSource = $"Строка подключения";
                 connStringList.Add(count, connString.ToString());/// Собрать все подключения
             }
-            await Task.Run(() => ParallelStreams(connStringList));/// Параллельный запуск подключений к серверам
+            await Task.Run(() => ParallelStreams(connStringList), token);/// Параллельный запуск подключений к серверам + token отмены
             dtTable.DefaultView.Sort = "[Difference] DESC";/// Отсортировать
             ConsoleLog();
             Work = false;
@@ -118,7 +120,15 @@ namespace ParallelOperationsOnDataServers.Models
         {
             Parallel.ForEach(connStringList, item =>
             {
-                ConnectToServer_And_GetData(item.Key, item.Value);
+                if (!token.IsCancellationRequested)
+                {
+                    ConnectToServer_And_GetData(item.Key, item.Value);
+                }
+                else// Если поступил запрос на остановку потоков
+                {
+                    Console = "Принудительная остановка операции";
+                    return;
+                }
             });
         }
         private void ConnectToServer_And_GetData(int count, string connString)// Подключение к серверам
@@ -169,10 +179,10 @@ namespace ParallelOperationsOnDataServers.Models
         private string DifferenceDate(string sysDate)
         {
             if (Hour == 0 && Minute == 0 && Second == 0) Second = 1;
-            TimeSpan tsStart = new TimeSpan(Hour * -1, Minute * -1, Second * -1);
-            TimeSpan tsEnd = new TimeSpan(Hour, Minute, Second);
-            DateTime startDate = DateTime.Now.Add(tsStart);
-            DateTime endDate = DateTime.Now.Add(tsEnd);
+            TimeSpan timeStart = new TimeSpan(Hour * -1, Minute * -1, Second * -1);
+            TimeSpan timeEnd = new TimeSpan(Hour, Minute, Second);
+            DateTime startDate = DateTime.Now.Add(timeStart);
+            DateTime endDate = DateTime.Now.Add(timeEnd);
 
             DateTime serverDate = Convert.ToDateTime(sysDate);
             if (serverDate.Between(startDate, endDate) == false)
@@ -194,21 +204,23 @@ namespace ParallelOperationsOnDataServers.Models
             int ok = 0;
             foreach (DataRow item in dtTable.Rows)
             {
-                if (item.Field<string>("Difference").Contains("Разница"))
-                {
+                if (item.Field<string>("Difference").Contains("Разница") == true)
                     countDate++;
-                }
                 else if (item.Field<string>("SysDate").Contains("Error") == true)
-                {
                     errConnect++;
-                }
                 else if (item.Field<string>("Difference").Contains("Все в порядке!") == true)
-                {
                     ok++;
-                }
                 all++;
             }
             Console = $"Выполнено! Количество серверов: - [Ok: {ok}] - [с разницей времени: {countDate}] - [с ошибкой подключения: {errConnect}] - Всего: {all}";
+        }
+        public void CancelTokenSource()
+        {
+            if(token.IsCancellationRequested == false)// Принудительная остановка потоков
+            {
+                tokenSource.Cancel();
+                tokenSource.Dispose();
+            }
         }
     }
 }

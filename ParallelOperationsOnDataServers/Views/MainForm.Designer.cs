@@ -36,21 +36,23 @@
             this.numericUpDownH = new System.Windows.Forms.NumericUpDown();
             this.btnStart = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewMain = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelConsole = new System.Windows.Forms.Label();
             this.textBoxFilter = new System.Windows.Forms.TextBox();
+            this.btnStop = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownH)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMain)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnStop);
             this.panel1.Controls.Add(this.btnTestCon);
             this.panel1.Controls.Add(this.labelnumeric);
             this.panel1.Controls.Add(this.numericUpDownS);
@@ -116,24 +118,22 @@
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.dataGridView1);
-            this.panel2.Location = new System.Drawing.Point(198, 29);
+            this.panel2.Controls.Add(this.dataGridViewMain);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(200, 23);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(600, 375);
+            this.panel2.Size = new System.Drawing.Size(600, 387);
             this.panel2.TabIndex = 1;
             // 
-            // dataGridView1
+            // dataGridViewMain
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(600, 375);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridViewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewMain.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewMain.Name = "dataGridViewMain";
+            this.dataGridViewMain.RowTemplate.Height = 25;
+            this.dataGridViewMain.Size = new System.Drawing.Size(600, 387);
+            this.dataGridViewMain.TabIndex = 0;
             // 
             // panel3
             // 
@@ -155,19 +155,30 @@
             // 
             // textBoxFilter
             // 
-            this.textBoxFilter.Location = new System.Drawing.Point(203, 3);
+            this.textBoxFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBoxFilter.Location = new System.Drawing.Point(200, 0);
             this.textBoxFilter.Name = "textBoxFilter";
-            this.textBoxFilter.Size = new System.Drawing.Size(164, 23);
+            this.textBoxFilter.Size = new System.Drawing.Size(600, 23);
             this.textBoxFilter.TabIndex = 3;
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(23, 115);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(153, 23);
+            this.btnStop.TabIndex = 6;
+            this.btnStop.Text = "Стоп";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.textBoxFilter);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "Параллельные операции на серверах с данными";
@@ -177,7 +188,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownH)).EndInit();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMain)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -197,7 +208,8 @@
         private NumericUpDown numericUpDownH;
         private Label labelConsole;
         private Button btnTestCon;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewMain;
         private TextBox textBoxFilter;
+        private Button btnStop;
     }
 }
