@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ParallelOperationsOnDataServers.Models
 {
-    internal class MainModel
+    internal class MainModel : BaseModel
     {
         private string Ip { get; set; }
         private string Port { get; set; }
@@ -132,40 +132,26 @@ namespace ParallelOperationsOnDataServers.Models
                 }
             });
         }
-        private void ConnectToServer_And_GetData(int count, string connString)// Подключение к серверам
+        private void ConnectToServer_And_GetData(int count, string connString)// Выполнение операции с данными
         {
             string sysDate = String.Empty;
             string difference = String.Empty;
             string id = String.Empty;
             WaitAndFillFinalTable(sysDate, difference, id, count);/// Ставлю метку "Waiting" - поток вошел
-            using (OracleConnection con = new OracleConnection(connString))
+            DataTable dt = GetTable("SELECT sysdate date, id FROM sys_config WHERE param = 'logsat'", connString);/// Подключение к серверам
+            if (dt.Columns["Error"] == null)
             {
-                try
-                {
-                    con.Open();
-                    var cmd = new OracleCommand("SELECT sysdate date, id FROM sys_config WHERE param = 'logsat'", con);
-                    cmd.ExecuteNonQuery();
-                    DataTable dt = new DataTable();
-                    var da = new OracleDataAdapter(cmd);
-                    da.Fill(dt);
-                    con.Close();
-                    sysDate = dt.Rows[0]["date"].ToString();
-                    id = dt.Rows[0]["id"].ToString();
-                    difference = DifferenceDate(sysDate);/// Разница во времени
-                }
-                catch (OracleException ex)
-                {
-                    sysDate = "Error " + ex.Message.ToString();
-                    difference = "Ошибка!";
-                    id = "er";
-                }
-                finally
-                {
-                    con.Close();
-                    con.Dispose();
-                }
-                WaitAndFillFinalTable(sysDate, difference, id, count);/// Заполняю итоговую таблицу
+                sysDate = dt.Rows[0]["date"].ToString();
+                id = dt.Rows[0]["id"].ToString();
+                difference = DifferenceDate(sysDate);/// Разница во времени
             }
+            else
+            {
+                sysDate = "Error " + dt.Rows[0]["Error"].ToString();
+                difference = "Ошибка!";
+                id = "er";
+            }
+            WaitAndFillFinalTable(sysDate, difference, id, count);/// Заполняю итоговую таблицу
         }
         private void WaitAndFillFinalTable(string sysDate, string difference, string id, int count)
         {
