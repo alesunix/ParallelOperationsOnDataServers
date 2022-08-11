@@ -50,7 +50,7 @@ namespace ParallelOperationsOnDataServers
             dataGridViewMain.DataSource = mModel.dtTable;
             bindingSource.DataSource = dataGridViewMain.DataSource;
         }
-        private void dataGridViewMain_RowPrePaint(object? sender, DataGridViewRowPrePaintEventArgs e)
+        private void dataGridViewMain_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             for (int i = 0; i < dataGridViewMain.Rows.Count; i++)
             {
@@ -76,7 +76,7 @@ namespace ParallelOperationsOnDataServers
                 btnStart.Enabled = mModel.Work == true ? false : true;
             labelConsole.Text = mModel.Console;
         }
-        private void TextBoxFilter_TextChanged(object? sender, EventArgs e)// Фильтр по гриду
+        private void TextBoxFilter_TextChanged(object sender, EventArgs e)// Фильтр по гриду
         {
             if (!String.IsNullOrEmpty(textBoxFilter.Text))
             {
