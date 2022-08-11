@@ -10,6 +10,7 @@ namespace ParallelOperationsOnDataServers.Models
 {
     public class BaseModel
     {
+        public static string connString = $@"Строка подключения";
         public DataTable GetTable(string query, string connString)
         {
             using (OracleConnection con = new OracleConnection(connString))
@@ -19,9 +20,8 @@ namespace ParallelOperationsOnDataServers.Models
                 {
                     con.Open();
                     var cmd = new OracleCommand(query, con);
-                    cmd.ExecuteNonQuery();
-                    var da = new OracleDataAdapter(cmd);
-                    da.Fill(dt);
+                    OracleDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    dt.Load(dr);
                     return dt;
                 }
                 catch (OracleException ex)

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnTestCon = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
             this.labelnumeric = new System.Windows.Forms.Label();
             this.numericUpDownS = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownM = new System.Windows.Forms.NumericUpDown();
@@ -40,7 +40,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelConsole = new System.Windows.Forms.Label();
             this.textBoxFilter = new System.Windows.Forms.TextBox();
-            this.btnStop = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownM)).BeginInit();
@@ -53,7 +52,6 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btnStop);
-            this.panel1.Controls.Add(this.btnTestCon);
             this.panel1.Controls.Add(this.labelnumeric);
             this.panel1.Controls.Add(this.numericUpDownS);
             this.panel1.Controls.Add(this.numericUpDownM);
@@ -65,16 +63,15 @@
             this.panel1.Size = new System.Drawing.Size(200, 450);
             this.panel1.TabIndex = 0;
             // 
-            // btnTestCon
+            // btnStop
             // 
-            this.btnTestCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnTestCon.Location = new System.Drawing.Point(23, 418);
-            this.btnTestCon.Name = "btnTestCon";
-            this.btnTestCon.Size = new System.Drawing.Size(153, 23);
-            this.btnTestCon.TabIndex = 5;
-            this.btnTestCon.Text = "Проверка подключения";
-            this.btnTestCon.UseVisualStyleBackColor = true;
-            this.btnTestCon.Click += new System.EventHandler(this.btnTestCon_Click);
+            this.btnStop.Location = new System.Drawing.Point(23, 115);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(153, 23);
+            this.btnStop.TabIndex = 6;
+            this.btnStop.Text = "Стоп";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // labelnumeric
             // 
@@ -161,16 +158,6 @@
             this.textBoxFilter.Size = new System.Drawing.Size(600, 23);
             this.textBoxFilter.TabIndex = 3;
             // 
-            // btnStop
-            // 
-            this.btnStop.Location = new System.Drawing.Point(23, 115);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(153, 23);
-            this.btnStop.TabIndex = 6;
-            this.btnStop.Text = "Стоп";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -207,7 +194,6 @@
         private NumericUpDown numericUpDownM;
         private NumericUpDown numericUpDownH;
         private Label labelConsole;
-        private Button btnTestCon;
         private DataGridView dataGridViewMain;
         private TextBox textBoxFilter;
         private Button btnStop;

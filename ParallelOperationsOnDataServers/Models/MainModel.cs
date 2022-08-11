@@ -24,10 +24,9 @@ namespace ParallelOperationsOnDataServers.Models
         public DataTable dtTable = new DataTable();
         public static CancellationTokenSource tokenSource = new CancellationTokenSource();
         public static CancellationToken token = tokenSource.Token;
-        OracleConnection con = Connect.connect;
         public MainModel()
         {
-            if (!ConnTest())
+            if (GetServersData().Columns["Error"] != null)
                 return;
             /// Создаю поля таблицы
             dtTable.Columns.Add("Ip", typeof(string));
@@ -39,39 +38,14 @@ namespace ParallelOperationsOnDataServers.Models
             dtTable.Columns.Add("Id", typeof(string));
             Fill_CollectionServers();/// Заполняю таблицу списком серверов
         }
-        public bool ConnTest()
+        public DataTable GetServersData()// Получаю список серверов
         {
-            try
+            DataTable dt = GetTable("SELECT * FROM tableServers", connString);
+            if (dt.Columns["Error"] != null)
             {
-                con.Open();
-                con.Close();
-                Console = "Подключение выполнено успешно!";
-                return true;
+                Console = dt.Rows[0]["Error"].ToString();
             }
-            catch (OracleException ex)
-            {
-                Console = "Ошибка подключения!" + ex.Message.ToString();
-                return false;
-            }
-        }
-        private DataTable GetServersData()// Получаю список серверов
-        {
-            try
-            {
-                con.Open();
-                var cmd = new OracleCommand("SELECT * FROM tableServers", con);
-                cmd.ExecuteNonQuery();
-                DataTable dt = new DataTable();
-                var da = new OracleDataAdapter(cmd);
-                da.Fill(dt);
-                con.Close();
-                return dt;
-            }
-            catch (OracleException ex)
-            {
-                Console = "Ошибка подключения!" + ex.Message.ToString();
-                return null;
-            }
+            return dt;
         }
         private void Fill_CollectionServers()// Заполняю таблицу списком серверов
         {

@@ -25,13 +25,9 @@ namespace ParallelOperationsOnDataServers
 
             // Проверка подключения
             labelConsole.Text = mModel.Console;
-            if(mModel.Console.Contains("Подключение выполнено успешно!"))
-            {
+            btnStart.Enabled = mModel.GetServersData().Columns["Error"] != null ? false : true;
+            if (btnStart.Enabled == true)
                 RefreshGrid();
-                btnStart.Enabled = true;
-            }
-            else
-                btnStart.Enabled = false;
         }
 
         
@@ -41,7 +37,6 @@ namespace ParallelOperationsOnDataServers
             textBoxFilter.Text = String.Empty;
             textBoxFilter.Enabled = false;
             btnStart.Enabled = false;
-            btnTestCon.Enabled = false;
             mModel.Hour = Convert.ToInt32(numericUpDownH.Value);
             mModel.Minute = Convert.ToInt32(numericUpDownM.Value);
             mModel.Second = Convert.ToInt32(numericUpDownS.Value);
@@ -54,11 +49,6 @@ namespace ParallelOperationsOnDataServers
             bindingSource.DataSource = null;
             dataGridViewMain.DataSource = mModel.dtTable;
             bindingSource.DataSource = dataGridViewMain.DataSource;
-        }
-        private void btnTestCon_Click(object sender, EventArgs e)
-        {
-            mModel.ConnTest();
-            labelConsole.Text = mModel.Console;
         }
         private void dataGridViewMain_RowPrePaint(object? sender, DataGridViewRowPrePaintEventArgs e)
         {
@@ -83,8 +73,7 @@ namespace ParallelOperationsOnDataServers
                 }
             }
             textBoxFilter.Enabled = 
-                btnStart.Enabled =
-                    btnTestCon.Enabled = mModel.Work == true ? false : true;
+                btnStart.Enabled = mModel.Work == true ? false : true;
             labelConsole.Text = mModel.Console;
         }
         private void TextBoxFilter_TextChanged(object? sender, EventArgs e)// Фильтр по гриду
