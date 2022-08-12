@@ -8,7 +8,7 @@ namespace ParallelOperationsOnDataServers
 {
     internal static class Config
     {
-        public static string con = $@"Строка подключения";
+        private static string con = $@"Строка подключения";
         public static void CreateConfig()
         {
             if(!File.Exists("Config.ini"))// Если файла нет, то создаем
