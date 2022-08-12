@@ -25,7 +25,7 @@ namespace ParallelOperationsOnDataServers
 
             // Проверка подключения
             labelConsole.Text = mModel.Console;
-            btnStart.Enabled = mModel.GetServersData().Columns["Error"] != null ? false : true;
+            btnStart.Enabled = mModel.GetServersList().Columns["Error"] != null ? false : true;
             if (btnStart.Enabled == true)
                 RefreshGrid();
         }

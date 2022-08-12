@@ -26,7 +26,7 @@ namespace ParallelOperationsOnDataServers.Models
         public static CancellationToken token = tokenSource.Token;
         public MainModel()
         {
-            if (GetServersData().Columns["Error"] != null)
+            if (GetServersList().Columns["Error"] != null)
                 return;
             /// Создаю поля таблицы
             dtTable.Columns.Add("Ip", typeof(string));
@@ -38,7 +38,7 @@ namespace ParallelOperationsOnDataServers.Models
             dtTable.Columns.Add("Id", typeof(string));
             Fill_CollectionServers();/// Заполняю таблицу списком серверов
         }
-        public DataTable GetServersData()// Получаю список серверов
+        public DataTable GetServersList()// Получаю список серверов
         {
             DataTable dt = GetTable("SELECT * FROM tableServers", connString);
             if (dt.Columns["Error"] != null)
@@ -52,7 +52,7 @@ namespace ParallelOperationsOnDataServers.Models
             dtTable.Clear();
             dtTable.DefaultView.Sort = String.Empty;
             int count = 0;
-            foreach (DataRow item in GetServersData().Rows)
+            foreach (DataRow item in GetServersList().Rows)
             {
                 count++;
                 Ip = item["IP"].ToString();
@@ -71,7 +71,7 @@ namespace ParallelOperationsOnDataServers.Models
             Dictionary<int, string> connStringList = new Dictionary<int, string>();
             var connString = new OracleConnectionStringBuilder();
             int count = -1;
-            foreach (DataRow item in GetServersData().Rows)
+            foreach (DataRow item in GetServersList().Rows)
             {
                 count++;
                 Ip = item["IP"].ToString();
