@@ -14,7 +14,7 @@ namespace ParallelOperationsOnDataServers.Models
         {
             Config.CreateConfig();
         }
-        static string[] line = File.ReadAllLines("Config.ini");
+        private static string[] line = File.ReadAllLines("Config.ini");
         public static string connString = line[0].ToString();
         public DataTable GetTable(string query, string connString)
         {
