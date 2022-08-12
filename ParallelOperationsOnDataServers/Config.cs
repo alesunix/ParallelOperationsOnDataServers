@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace ParallelOperationsOnDataServers
 {
@@ -17,12 +13,6 @@ namespace ParallelOperationsOnDataServers
                 {
                     sw.WriteLine(con);
                 }
-            }
-            else
-            {
-                string[] line = File.ReadAllLines("Config.ini");
-                line[0] = con;
-                File.WriteAllLines("Config.ini", line);
             }
         }
     }
