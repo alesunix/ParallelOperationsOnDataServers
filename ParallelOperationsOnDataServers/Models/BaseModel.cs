@@ -1,10 +1,5 @@
 ﻿using Oracle.ManagedDataAccess.Client;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ParallelOperationsOnDataServers.Models
 {
@@ -16,7 +11,7 @@ namespace ParallelOperationsOnDataServers.Models
         }
         private static string[] line = File.ReadAllLines("Config.ini");
         public static string connString = line[0].ToString();
-        public DataTable GetTable(string query, string connString)
+        public DataTable GetTable(string query)
         {
             using (OracleConnection con = new OracleConnection(connString))
             {
