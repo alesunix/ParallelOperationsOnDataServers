@@ -40,7 +40,7 @@ namespace ParallelOperationsOnDataServers.Models
         }
         public DataTable GetServersList()// Получаю список серверов
         {
-            DataTable dt = GetTable("SELECT * FROM tableServers");
+            DataTable dt = GetTable("SELECT * FROM tableServers", connString);
             if (dt.Columns["Error"] != null)
             {
                 Console = dt.Rows[0]["Error"].ToString();
@@ -112,7 +112,7 @@ namespace ParallelOperationsOnDataServers.Models
             string difference = String.Empty;
             string id = String.Empty;
             WaitAndFillFinalTable(sysDate, difference, id, count);/// Ставлю метку "Waiting" - поток вошел
-            DataTable dt = GetTable("SELECT sysdate date, id FROM sys_config WHERE param = 'logsat'");/// Подключение к серверам
+            DataTable dt = GetTable("SELECT sysdate date, id FROM sys_config WHERE param = 'logsat'", connString);/// Подключение к серверам
             if (dt.Columns["Error"] == null)
             {
                 sysDate = dt.Rows[0]["date"].ToString();

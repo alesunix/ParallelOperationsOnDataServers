@@ -11,7 +11,7 @@ namespace ParallelOperationsOnDataServers.Models
         }
         private static string[] line = File.ReadAllLines("Config.ini");
         public static string connString = line[0].ToString();
-        public DataTable GetTable(string query)
+        public DataTable GetTable(string query, string connString)
         {
             using (OracleConnection con = new OracleConnection(connString))
             {
