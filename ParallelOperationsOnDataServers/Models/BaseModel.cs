@@ -11,6 +11,11 @@ namespace ParallelOperationsOnDataServers.Models
         }
         private static string[] line = File.ReadAllLines("Config.ini");
         public static string connString = line[0].ToString();
+        /// <summary>
+        /// Выполняет sql-выражение ExecuteReader и формирует SqlDataReader. Подходит для sql-выражения SELECT.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns>Возвращает таблицу DataTable</returns>
         public DataTable GetTable(string query, string connString)
         {
             using (OracleConnection con = new OracleConnection(connString))
